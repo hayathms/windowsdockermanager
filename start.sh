@@ -58,7 +58,7 @@ else
     $EXE_CMD_TOOL build --build-arg USERNAME="${USER}" --build-arg UID="${UID}" --build-arg PROJECT_PWD="${PROJECT_PWD}" -t "${SERVICE_IMAGE}:latest" .;
 fi
 
-CMD="$EXE_CMD_TOOL run --userns=host --hostname $SERVICE_NAME -it --network $NETWORK_NAME --name $SERVICE_NAME $PORT_ADDRESS $ADDITIONAL_VOLUMES -v ${PROJECT_PWD}/../:${PROJECT_PWD}/../:z \"${SERVICE_IMAGE}:latest\" /bin/bash";
+CMD="$EXE_CMD_TOOL run --userns=keep-id --hostname $SERVICE_NAME -it --network $NETWORK_NAME --name $SERVICE_NAME $PORT_ADDRESS $ADDITIONAL_VOLUMES -v ${PROJECT_PWD}/../:${PROJECT_PWD}/../:z \"${SERVICE_IMAGE}:latest\" /bin/bash";
 
 echo $CMD
 
