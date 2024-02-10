@@ -29,8 +29,5 @@ ENV PATH=$PATH:/home/$USERNAME/.local/bin/
 WORKDIR "$PROJECT_PWD"
 #########################################
 # for wasm-pack
-RUN rustup target add wasm32-unknown-unknown
-RUN rustup update && cargo install trunk
-RUN cargo install wasm-bindgen-cli
-RUN cargo install cargo-make
+RUN rustup target add x86_64-pc-windows-gnu
 #########################################
