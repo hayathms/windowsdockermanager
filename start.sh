@@ -9,14 +9,13 @@ echo "Enter 1 for docker and 2 for podman"
 read -p "Enter your choice: " choice
 
 # if user selects docker than EXE_CMD_TOOL should be set to docker , if user selects 2 than it should be set to $EXE_CMD_TOOL
+
 if [ $choice -eq 1 ]
 then
     EXE_CMD_TOOL="docker"
-    USER_IDS="$(id -u):$(id -g)"
 elif [ $choice -eq 2 ]
 then
     EXE_CMD_TOOL="podman"
-    USER_IDS="root"
 else
     echo "Invalid choice"
     exit 1
@@ -59,7 +58,7 @@ else
     $EXE_CMD_TOOL build --build-arg USERNAME="${USER}" --build-arg UID="${UID}" --build-arg PROJECT_PWD="${PROJECT_PWD}" -t "${SERVICE_IMAGE}:latest" .;
 fi
 
-CMD="$EXE_CMD_TOOL run --user $USER_IDS --hostname $SERVICE_NAME -it --network $NETWORK_NAME --name $SERVICE_NAME $PORT_ADDRESS $ADDITIONAL_VOLUMES -v ${PROJECT_PWD}/../:${PROJECT_PWD}/../:z \"${SERVICE_IMAGE}:latest\" /bin/bash";
+CMD="$EXE_CMD_TOOL run --userns=host --hostname $SERVICE_NAME -it --network $NETWORK_NAME --name $SERVICE_NAME $PORT_ADDRESS $ADDITIONAL_VOLUMES -v ${PROJECT_PWD}/../:${PROJECT_PWD}/../:z \"${SERVICE_IMAGE}:latest\" /bin/bash";
 
 echo $CMD
 
