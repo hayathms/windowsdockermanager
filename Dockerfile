@@ -12,6 +12,9 @@ RUN apt-get update -y
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN apt-get remove git -y || rm /usr/bin/git 
+RUN apt-get install musl-tools -y
+
+
 # Below is optional
 #########################################
 #RUN apt-get install -y tree
