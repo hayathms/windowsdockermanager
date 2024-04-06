@@ -13,7 +13,7 @@ RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN apt-get remove git -y || rm /usr/bin/git 
 RUN apt-get install libudev-dev -y
-# RUN apt-get install mingw-w64 -y
+RUN apt-get install mingw-w64 -y
 # Below is optional
 #########################################
 #RUN apt-get install -y tree
